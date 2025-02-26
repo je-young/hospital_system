@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hospital.mapper.DoctorMapper">  <!-- namespace 속성에 DoctorMapper 인터페이스 경로 지정 -->
+
+    <!-- DoctorMapper 인터페이스 메소드에 매핑될 SQL 쿼리 작성 -->
+
+    <!-- 의사 등록 (insertDoctor 메소드 매핑) -->
+    <insert id="insertDoctor" parameterType="hospital.dto.DoctorDto">
+        INSERT INTO doctor (name, specialty, phone)
+        VALUES (#{name}, #{specialty}, #{phone})
+    </insert>
+
+    <!-- 전체 의사 목록 조회 (selectAllDoctors 메소드 매핑) -->
+    <select id="selectAllDoctors" resultType="hospital.dto.DoctorDto">
+        SELECT doctorid, name, specialty, phone, createdat
+        FROM doctor
+        ORDER BY doctorid DESC  <!-- 최근 등록 의사부터 조회 -->
+    </select>
+
+    <!-- 특정 의사 상세 조회 (ID로 조회) (selectDoctorById 메소드 매핑) -->
+    <select id="selectDoctorById" parameterType="int" resultType="hospital.dto.DoctorDto">
+        SELECT doctorid, name, specialty, phone, createdat
+        FROM doctor
+        WHERE doctorid = #{doctorid}
+    </select>
+
+    <!-- 의사 정보 수정 (updateDoctor 메소드 매핑) -->
+    <update id="updateDoctor" parameterType="hospital.dto.DoctorDto">
+        UPDATE doctor
+        SET name = #{name},
+            specialty = #{specialty},
+            phone = #{phone}
+        WHERE doctorid = #{doctorid}
+    </update>
+
+    <!-- 의사 정보 삭제 (ID로 삭제) (deleteDoctorById 메소드 매핑) -->
+    <delete id="deleteDoctorById" parameterType="int">
+        DELETE FROM doctor
+        WHERE doctorid = #{doctorid}
+    </delete>
+
+</mapper>
