@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*") // 개발 환경에서는 모든 Origin 허용 설정
 @RestController
 @RequestMapping("/api/patients")
 public class PatientController {

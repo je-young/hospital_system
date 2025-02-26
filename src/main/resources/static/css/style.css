@@ -1,0 +1,29 @@
+/* style.css */
+
+body {
+    font-family: 'Noto Sans KR', sans-serif; /* 전체 폰트 변경 (Noto Sans KR 폰트 적용 예시) */
+    /* background-color: #f8f9fa;  body 배경색 변경 (light gray - Bootstrap bg-light 와 유사) */
+}
+
+.container {
+    max-width: 1200px; /* Bootstrap container max-width 조정 (필요에 따라) */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* 추가적인 CSS 스타일 (UI 요소별 스타일, 레이아웃 스타일 등) */
+
+.btn-primary {
+    background-color: #007bff; /* Primary Button 배경색 변경 (Bootstrap Primary Color - dark blue) */
+    border-color: #007bff;
+    /* color: #fff;  글자색은 기본적으로 흰색이므로 생략 가능 */
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #0056b3; /* Hover, Focus, Active 시 배경색 변경 (더 어두운 파란색) */
+    border-color: #0056b3;
+}
+
+/* (필요에 따라) Primary Button 에 대한 추가 스타일 */

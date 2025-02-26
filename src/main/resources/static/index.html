@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>병원 진료 예약 시스템 - 환자 관리</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS (style.css) -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- axios CDN 링크 추가 (script.js *보다 먼저* 로드되어야 함) -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<header>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">병원 예약 시스템</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">환자 관리</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="doctor-list.html">의사 관리</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="appointment-list.html">예약 관리</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<div class="container mt-3">  <!-- Bootstrap Container with margin-top -->
+  <main>
+    <section id="patient-list-section">
+      <h2>환자 목록</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>이름</th>
+          <th>생년월일</th>
+          <th>전화번호</th>
+          <th>주소</th>
+          <th>등록일</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody id="patient-list-tbody">
+        <!-- 환자 목록 데이터가 여기에 동적으로 추가됩니다 -->
+        <tr>
+          <td>1</td>
+          <td>테스트 환자</td>
+          <td>2000-01-01</td>
+          <td>010-1234-5678</td>
+          <td>테스트 주소</td>
+          <td>2024-12-18</td>
+          <td><button class="btn btn-sm btn-primary">상세</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>다른 환자</td>
+          <td>1995-05-10</td>
+          <td>010-9876-5432</td>
+          <td>다른 주소</td>
+          <td>2024-12-19</td>
+          <td><button class="btn btn-sm btn-primary">상세</button></td>
+        </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary" id="add-patient-btn">환자 등록</button>
+    </section>
+
+    <section id="patient-detail-section" style="display: none;">  <!-- Initially hidden -->
+      <h2>환자 상세 정보</h2>
+      <div id="patient-detail">
+        <!-- 환자 상세 정보가 여기에 동적으로 표시됩니다 -->
+      </div>
+      <button class="btn btn-secondary" id="back-to-list-btn">목록으로 돌아가기</button>
+    </section>
+
+    <section id="patient-register-section" style="display: none;">  <!-- Initially hidden -->
+      <h2>환자 등록</h2>
+      <form id="patient-form">
+        <div class="mb-3">
+          <label for="name" class="form-label">이름</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="birthdate" class="form-label">생년월일</label>
+          <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">전화번호</label>
+          <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">주소</label>
+          <input type="text" class="form-control" id="address" name="address" required>
+        </div>
+        <button type="submit" class="btn btn-primary">등록</button>
+        <button type="button" class="btn btn-secondary" id="cancel-register-btn">취소</button>
+      </form>
+    </section>
+
+  </main>
+</div>
+
+<footer class="bg-light text-center py-3 mt-3">
+  <p>© 2025 YOUNG 병원. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JavaScript (script.js) -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
