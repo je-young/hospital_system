@@ -1,29 +1,125 @@
-/* style.css */
-
+/* 1. 기본 스타일 */
 body {
-    font-family: 'Noto Sans KR', sans-serif; /* 전체 폰트 변경 (Noto Sans KR 폰트 적용 예시) */
-    /* background-color: #f8f9fa;  body 배경색 변경 (light gray - Bootstrap bg-light 와 유사) */
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #343a40;
+    background-color: #f8f9fa;
+    line-height: 1.6;
 }
 
+h2 {
+    color: #212529;
+    margin-bottom: 1.5rem;
+}
+
+/* 2. Container 스타일 */
 .container {
-    max-width: 1200px; /* Bootstrap container max-width 조정 (필요에 따라) */
-    padding-top: 20px;
-    padding-bottom: 20px;
+    max-width: 1200px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
-/* 추가적인 CSS 스타일 (UI 요소별 스타일, 레이아웃 스타일 등) */
+/* 3. Navbar 스타일 */
+.navbar {
+    margin-bottom: 2rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.7rem 1rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    font-weight: bold;
+    background-color: #e9ecef;
+}
+
+/* 4. Table 스타일 */
+.table thead th {
+    background-color: #e9ecef;
+    border-bottom-width: 2px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.table td, .table th {
+    padding: 0.9rem 0.75rem;
+    vertical-align: middle;
+}
+
+/* 5. Button 스타일 */
+.btn {
+    border-radius: 0.25rem;
+    padding: 0.7rem 1.2rem;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.btn:focus,
+.btn:active {
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.2);
+    transform: scale(0.98);
+}
 
 .btn-primary {
-    background-color: #007bff; /* Primary Button 배경색 변경 (Bootstrap Primary Color - dark blue) */
-    border-color: #007bff;
-    /* color: #fff;  글자색은 기본적으로 흰색이므로 생략 가능 */
+    background-color: #007bff;
+    color: #fff;
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-    background-color: #0056b3; /* Hover, Focus, Active 시 배경색 변경 (더 어두운 파란색) */
-    border-color: #0056b3;
+    background-color: #0056b3;
 }
 
-/* (필요에 따라) Primary Button 에 대한 추가 스타일 */
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: #545b62;
+}
+
+/* 6. Form 스타일 */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+
+.form-control {
+    border-radius: 0.2rem;
+    border: 1px solid #ced4da;
+    padding: 0.6rem 0.9rem;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* 7. Footer 스타일 */
+footer {
+    border-top: 1px solid #dee2e6;
+    color: #6c757d;
+}

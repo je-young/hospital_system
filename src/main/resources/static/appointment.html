@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YOUNG 병원 진료 예약 시스템 - 환자 관리</title>
+  <title>YOUNG 병원 진료 예약 시스템 - 예약 관리</title>
   <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
@@ -17,20 +17,19 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="index.html">YOUNG 병원 예약 시스템</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">환자 관리</a>
+            <a class="nav-link" aria-current="page" href="index.html">환자 관리</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="doctor.html">의사 관리</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="appointment.html">예약 관리</a>
+            <a class="nav-link active" href="appointment.html">예약 관리</a>
           </li>
         </ul>
       </div>
@@ -40,11 +39,11 @@
 
 <div class="container mt-4">
   <main>
-    <section id="patient-list-section">
+    <section id="appointment-list-section">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="mb-0">환자 목록</h2>
-        <button class="btn btn-primary" id="add-patient-btn">
-          <i class="bi bi-person-plus-fill me-2"></i> 환자 등록
+        <h2 class="mb-0">예약 목록</h2>
+        <button class="btn btn-primary" id="add-appointment-btn">
+          <i class="bi bi-calendar-plus-fill me-2"></i> 예약 등록
         </button>
       </div>
       
@@ -52,16 +51,16 @@
       <form id="searchForm" class="mb-3">
         <div class="row g-3 align-items-center">
           <div class="col-md-auto">
-            <label for="searchName" class="col-form-label">이름:</label>
+            <label for="searchDate" class="col-form-label">날짜:</label>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" id="searchName" name="searchName" placeholder="환자 이름">
+            <input type="date" class="form-control" id="searchDate" name="searchDate">
           </div>
           <div class="col-md-auto">
-            <label for="searchPhone" class="col-form-label">전화번호:</label>
+            <label for="searchPatientName" class="col-form-label">환자 이름:</label>
           </div>
           <div class="col-md-3">
-            <input type="tel" class="form-control" id="searchPhone" name="searchPhone" placeholder="전화번호">
+            <input type="text" class="form-control" id="searchPatientName" name="searchPatientName" placeholder="환자 이름">
           </div>
           <div class="col-md-auto">
             <button type="submit" class="btn btn-primary">
@@ -73,30 +72,31 @@
           </div>
         </div>
       </form>
+      <!-- 검색 폼 끝 -->
       
-      <!-- 환자 목록 테이블 -->
+      <!-- 예약 목록 테이블 -->
       <div class="table-responsive">
         <table class="table table-striped table-hover">
           <thead>
           <tr>
             <th>ID</th>
-            <th>이름</th>
-            <th>생년월일</th>
-            <th>전화번호</th>
-            <th>주소</th>
-            <th>등록일</th>
+            <th>환자 이름</th>
+            <th>의사 이름</th>
+            <th>예약 날짜</th>
+            <th>예약 시간</th>
+            <th>상태</th>
             <th></th>
           </tr>
           </thead>
-          <tbody id="patient-list-tbody">
-          <!-- 초기 예시 데이터 -->
+          <tbody id="appointment-list-tbody">
+          <!-- 예약 목록 데이터가 여기에 동적으로 추가됩니다 -->
           <tr>
             <td>1</td>
             <td>테스트 환자</td>
-            <td>2000-01-01</td>
-            <td>010-1234-5678</td>
-            <td>테스트 주소</td>
-            <td>2024-12-18</td>
+            <td>테스트 의사</td>
+            <td>2025-03-10</td>
+            <td>10:00</td>
+            <td>예약 완료</td>
             <td>
               <button class="btn btn-sm btn-primary detail-button">
                 <i class="bi bi-info-circle-fill"></i> 상세 정보
@@ -106,10 +106,10 @@
           <tr>
             <td>2</td>
             <td>다른 환자</td>
-            <td>1995-05-10</td>
-            <td>010-9876-5432</td>
-            <td>다른 주소</td>
-            <td>2024-12-19</td>
+            <td>다른 의사</td>
+            <td>2025-03-11</td>
+            <td>14:00</td>
+            <td>예약 완료</td>
             <td>
               <button class="btn btn-sm btn-primary detail-button">
                 <i class="bi bi-info-circle-fill"></i> 상세 정보
@@ -119,47 +119,64 @@
           </tbody>
         </table>
       </div>
+      <!-- 예약 목록 테이블 끝 -->
+    
     </section>
     
-    <section id="patient-detail-section" style="display: none;">
+    <section id="appointment-detail-section" style="display: none;">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="mb-0">환자 상세 정보</h2>
+        <h2 class="mb-0">예약 상세 정보</h2>
         <div>
-          <button class="btn btn-primary" id="edit-patient-btn" style="margin-right: 10px;">
+          <button clsss="btn btn-primary" id="edit-appointment-btn" style="margin-right: 10px;">
             <i class="bi bi-pencil-square"></i> 수정
+          </button>
+          <button class="btn btn-danger" id="cancel-appointment-btn" style="margin-right: 10px;">
+            <i class="bi bi-calendar-x-fill"></i> 예약 취소
           </button>
           <button class="btn btn-secondary" id="back-to-list-btn">
             <i class="bi bi-list-ul"></i> 목록으로
           </button>
         </div>
       </div>
-      <div id="patient-detail" class="card p-3 shadow-sm">
-        <!-- 환자 상세 정보가 여기에 표시됩니다 -->
+      <div id="appointment-detail" class="card p-3 shadow-sm">
+        <!-- 예약 상세 정보가 여기에 동적으로 표시됩니다 -->
       </div>
     </section>
     
-    <section id="patient-register-section" style="display: none;">
-      <h2 class="mb-3">환자 등록</h2>
-      <form id="patient-form" class="shadow-sm p-4 bg-light rounded">
+    <section id="appointment-register-section" style="display: none;">
+      <h2 class="mb-3">진료 예약 등록</h2>
+      <form id="appointment-form" class="shadow-sm p-4 bg-light rounded">
         <div class="mb-3">
-          <label for="name" class="form-label">이름</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="환자 이름">
+          <label for="patientName" class="form-label">환자 이름</label>
+          <input type="text" class="form-control" id="patientName" name="patientName" placeholder="예약 환자 이름">
+          <div id="patientNameHelp" class="form-text">환자 이름을 입력하세요.</div>
         </div>
         <div class="mb-3">
-          <label for="birthdate" class="form-label">생년월일</label>
-          <input type="date" class="form-control" id="birthdate" name="birthdate">
+          <label for="doctorName" class="form-label">의사 이름</label>
+          <select class="form-select" id="doctorName" name="doctorName" required>
+            <option value="">-- 의사 선택 --</option>
+            <option value="1">김철수 (내과)</option>
+            <option value="2">이소라 (정형외과)</option>
+            <option value="3">박영호 (피부과)</option>
+          </select>
         </div>
         <div class="mb-3">
-          <label for="phone" class="form-label">전화번호</label>
-          <input type="tel" class="form-control" id="phone" name="phone" placeholder="010-1234-5678">
+          <label for="appointmentDate" class="form-label">예약 날짜</label>
+          <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" required>
         </div>
         <div class="mb-3">
-          <label for="address" class="form-label">주소</label>
-          <input type="text" class="form-control" id="address" name="address" placeholder="상세 주소">
+          <label for="appointmentTime" class="form-label">예약 시간</label>
+          <select class="form-select" id="appointmentTime" name="appointmentTime" required>
+            <option value="">-- 시간 선택 --</option>
+            <option value="09:00">09:00</option>
+            <option value="09:30">09:30</option>
+            <option value="10:00">10:00</option>
+            <option value="10:30">10:30</option>
+          </select>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="submit" class="btn btn-primary">
-            <i class="bi bi-person-plus-fill me-2"></i> 등록
+          <button type="submit" class="btn btn-primary" id="register-appointment-btn">
+            <i class="bi bi-calendar-plus-fill me-2"></i> 예약
           </button>
           <button type="button" class="btn btn-secondary" id="cancel-register-btn">
             <i class="bi bi-x-lg"></i> 취소
@@ -179,8 +196,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<!-- Custom JavaScript -->
-<script src="js/patient.js"></script>
+<!-- Custom JavaScript (appointment.js) -->
+<script src="js/appointment.js"></script>
 
 </body>
 </html>

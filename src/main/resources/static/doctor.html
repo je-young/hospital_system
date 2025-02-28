@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YOUNG 병원 진료 예약 시스템 - 환자 관리</title>
+  <title>YOUNG 병원 진료 예약 시스템 - 의사 관리</title>
   <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
@@ -24,10 +24,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">환자 관리</a>
+            <a class="nav-link" aria-current="page" href="index.html">환자 관리</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="doctor.html">의사 관리</a>
+            <a class="nav-link active" href="doctor.html">의사 관리</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="appointment.html">예약 관리</a>
@@ -40,11 +40,11 @@
 
 <div class="container mt-4">
   <main>
-    <section id="patient-list-section">
+    <section id="doctor-list-section">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="mb-0">환자 목록</h2>
-        <button class="btn btn-primary" id="add-patient-btn">
-          <i class="bi bi-person-plus-fill me-2"></i> 환자 등록
+        <h2 class="mb-0">의사 목록</h2>
+        <button class="btn btn-primary" id="add-doctor-btn">
+          <i class="bi bi-person-plus-fill me-2"></i> 의사 등록
         </button>
       </div>
       
@@ -55,13 +55,13 @@
             <label for="searchName" class="col-form-label">이름:</label>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" id="searchName" name="searchName" placeholder="환자 이름">
+            <input type="text" class="form-control" id="searchName" name="searchName" placeholder="의사 이름">
           </div>
           <div class="col-md-auto">
-            <label for="searchPhone" class="col-form-label">전화번호:</label>
+            <label for="searchSpecialty" class="col-form-label">진료과:</label>
           </div>
           <div class="col-md-3">
-            <input type="tel" class="form-control" id="searchPhone" name="searchPhone" placeholder="전화번호">
+            <input type="text" class="form-control" id="searchSpecialty" name="searchSpecialty" placeholder="진료과">
           </div>
           <div class="col-md-auto">
             <button type="submit" class="btn btn-primary">
@@ -73,30 +73,29 @@
           </div>
         </div>
       </form>
+      <!-- 검색 폼 끝 -->
       
-      <!-- 환자 목록 테이블 -->
+      <!-- 의사 목록 테이블 -->
       <div class="table-responsive">
         <table class="table table-striped table-hover">
           <thead>
           <tr>
             <th>ID</th>
             <th>이름</th>
-            <th>생년월일</th>
+            <th>진료과</th>
             <th>전화번호</th>
-            <th>주소</th>
             <th>등록일</th>
             <th></th>
           </tr>
           </thead>
-          <tbody id="patient-list-tbody">
-          <!-- 초기 예시 데이터 -->
+          <tbody id="doctor-list-tbody">
+          <!-- 의사 목록 데이터가 동적으로 추가됩니다 -->
           <tr>
             <td>1</td>
-            <td>테스트 환자</td>
-            <td>2000-01-01</td>
-            <td>010-1234-5678</td>
-            <td>테스트 주소</td>
-            <td>2024-12-18</td>
+            <td>테스트 의사</td>
+            <td>내과</td>
+            <td>010-1111-1111</td>
+            <td>2024-12-20</td>
             <td>
               <button class="btn btn-sm btn-primary detail-button">
                 <i class="bi bi-info-circle-fill"></i> 상세 정보
@@ -105,11 +104,10 @@
           </tr>
           <tr>
             <td>2</td>
-            <td>다른 환자</td>
-            <td>1995-05-10</td>
-            <td>010-9876-5432</td>
-            <td>다른 주소</td>
-            <td>2024-12-19</td>
+            <td>다른 의사</td>
+            <td>외과</td>
+            <td>010-2222-2222</td>
+            <td>2024-12-21</td>
             <td>
               <button class="btn btn-sm btn-primary detail-button">
                 <i class="bi bi-info-circle-fill"></i> 상세 정보
@@ -119,13 +117,15 @@
           </tbody>
         </table>
       </div>
+      <!-- 의사 목록 테이블 끝 -->
+    
     </section>
     
-    <section id="patient-detail-section" style="display: none;">
+    <section id="doctor-detail-section" style="display: none;">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="mb-0">환자 상세 정보</h2>
+        <h2 class="mb-0">의사 상세 정보</h2>
         <div>
-          <button class="btn btn-primary" id="edit-patient-btn" style="margin-right: 10px;">
+          <button class="btn btn-primary" id="edit-doctor-btn" style="margin-right: 10px;">
             <i class="bi bi-pencil-square"></i> 수정
           </button>
           <button class="btn btn-secondary" id="back-to-list-btn">
@@ -133,32 +133,28 @@
           </button>
         </div>
       </div>
-      <div id="patient-detail" class="card p-3 shadow-sm">
-        <!-- 환자 상세 정보가 여기에 표시됩니다 -->
+      <div id="doctor-detail" class="card p-3 shadow-sm">
+        <!-- 의사 상세 정보가 동적으로 표시됩니다 -->
       </div>
     </section>
     
-    <section id="patient-register-section" style="display: none;">
-      <h2 class="mb-3">환자 등록</h2>
-      <form id="patient-form" class="shadow-sm p-4 bg-light rounded">
+    <section id="doctor-register-section" style="display: none;">
+      <h2 class="mb-3">의사 등록</h2>
+      <form id="doctor-form" class="shadow-sm p-4 bg-light rounded">
         <div class="mb-3">
           <label for="name" class="form-label">이름</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="환자 이름">
+          <input type="text" class="form-control" id="name" name="name" placeholder="의사 이름">
         </div>
         <div class="mb-3">
-          <label for="birthdate" class="form-label">생년월일</label>
-          <input type="date" class="form-control" id="birthdate" name="birthdate">
+          <label for="specialty" class="form-label">진료과</label>
+          <input type="text" class="form-control" id="specialty" name="specialty" placeholder="진료과">
         </div>
         <div class="mb-3">
           <label for="phone" class="form-label">전화번호</label>
           <input type="tel" class="form-control" id="phone" name="phone" placeholder="010-1234-5678">
         </div>
-        <div class="mb-3">
-          <label for="address" class="form-label">주소</label>
-          <input type="text" class="form-control" id="address" name="address" placeholder="상세 주소">
-        </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" id="register-doctor-btn">
             <i class="bi bi-person-plus-fill me-2"></i> 등록
           </button>
           <button type="button" class="btn btn-secondary" id="cancel-register-btn">
@@ -179,8 +175,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<!-- Custom JavaScript -->
-<script src="js/patient.js"></script>
+<!-- Custom JavaScript (doctor.js) -->
+<script src="js/doctor.js"></script>
 
 </body>
 </html>
